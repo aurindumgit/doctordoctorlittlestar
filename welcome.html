@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Header Styles */
+        header {
+            background-color: #1a237e; /* Dark Blue */
+            color: white;
+            padding: 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+        }
+
+        .header-links li {
+            display: inline;
+            margin-right: 20px;
+            font-size: 15px;
+            color: aqua;
+        }
+
+        /* Body Styles */
+        body {
+            background-color: #ffffff; /* White */
+            color: #000000; /* Black */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .doctor-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .doctor-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #1a237e; /* Dark Blue */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-links li {
+            display: inline;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Doctor Appointment Scheduler</h1>
+            <ul class="header-links">
+                <a href="#"><button>Home</button></a>
+                <a href="#"><button> Contact Us</button></a>
+                <a href="#"><button>About Us</button></a>
+            </ul>
+            <!-- <div>
+                <a href="login1.html"><button> Login/SignUp</button></a>
+
+            </div> -->
+        </div>
+    </header>
+
+
+    <!-- <h2>Welcome</h2>
+    <p>You have successfully logged in.</p>
+    <p>Where are you experiencing problem?</p> -->
+    <!-- <form action="#" method="GET">
+        <input type="text" name="search" id="search" placeholder="doc/hostpital/problem...">
+        <button type="submit">Search</button>
+        <button type="button" id="clearButton">Clear</button>
+    </form> -->
+
+    <script>
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('search').value = '';
+        });
+    </script><br><br>
+    <p>Most common problems</p>
+    <div class="dise">
+    <button onclick="filterDoctors('Head Specialist')">Head</button>
+    <button onclick="filterDoctors('Eye Specialist')">Eye</button>
+    <button onclick="filterDoctors('Body Specialist')">Body</button>
+    <button onclick="filterDoctors('Chest/Heart Specialist')">Chest/Heart</button>
+    <button onclick="filterDoctors('Stomach Specialist')">Stomach</button>
+    <div class="search">
+    <form action="#" method="GET">
+        <input type="text" name="search" id="search" placeholder="Doctor/Hostpital/Problem...">
+        <button type="submit">Search</button>
+        <button type="button" id="clearButton">Clear</button>
+    </form></div>
+</div>
+    <!-- <button onclick="location.href='login.html'">go back</button> -->
+    <div class="doc-c" id="doctors-container"></div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
+
