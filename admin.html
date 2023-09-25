@@ -3,9 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
+    <h1>Admin Dashboard</h1>
+    <p>Today's Appointments</p>
     
+    <!-- Buttons for filtering patients by health problem -->
+    <button onclick="filterPatients('head')">Head</button>
+    <button onclick="filterPatients('stomach')">Stomach</button>
+    <button onclick="filterPatients('back')">Back</button>
+    <button onclick="filterPatients('chest')">Chest</button>
+    
+
+    <!-- Button to clear displayed data -->
+    <button onclick="clearData()">Clear</button>
+
+    <!-- Container for displaying patient data -->
+    <div id="patient-list">
+        <!-- Patient data will be displayed here -->
+    </div>
+
+    <script src="admin.js"></script>
+    <script src="popup.js"></script>
+
 </body>
 </html>
