@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const appointmentsList = document.getElementById("appointments");
+    const appointmentsTable = document.getElementById("appointments");
+    const sortFilter = document.getElementById("sortFilter");
+    const filterButton = document.getElementById("filterButton");
 
     // Sample patient data
     const patients = [
-        // ... (your patient data here)
         
             {
                 "id": 1,
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 45,
                 "preferred_time": "morning",
                 "problem": "head",
-
+                "preferred_doctor": "Dr. John Smith"
             },
             {
                 "id": 2,
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 32,
                 "preferred_time": "afternoon",
                 "problem": "stomach",
-        
+                "preferred_doctor": "Dr. Robert Brown"
             },
             {
                 "id": 3,
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 50,
                 "preferred_time": "evening",
                 "problem": "back",
-            
+                "preferred_doctor": "Dr. Michael Davis"
             },
             {
                 "id": 4,
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 38,
                 "preferred_time": "morning",
                 "problem": "chest",
-            
+                "preferred_doctor": "Dr. Lisa Williams"
             },
             {
                 "id": 5,
@@ -43,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 28,
                 "preferred_time": "afternoon",
                 "problem": "head",
-            
+                "preferred_doctor": "Dr. John Smith"
             },
             {
                 "id": 6,
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 55,
                 "preferred_time": "morning",
                 "problem": "stomach",
-            
+                "preferred_doctor": "Dr. Jennifer Harris"
             },
             {
                 "id": 7,
@@ -59,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 42,
                 "preferred_time": "evening",
                 "problem": "back",
-        
+                "preferred_doctor": "Dr. David Lee"
             },
             {
                 "id": 8,
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 34,
                 "preferred_time": "morning",
                 "problem": "chest",
-                
+                "preferred_doctor": "Dr. Emily White"
             },
             {
                 "id": 9,
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 30,
                 "preferred_time": "afternoon",
                 "problem": "head",
-            
+                "preferred_doctor": "Dr. John Smith"
             },
             {
                 "id": 10,
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 48,
                 "preferred_time": "morning",
                 "problem": "stomach",
-            
+                "preferred_doctor": "Dr. Robert Brown"
             },
             {
                 "id": 11,
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 36,
                 "preferred_time": "evening",
                 "problem": "back",
-                
+                "preferred_doctor": "Dr. Michael Davis"
             },
             {
                 "id": 12,
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 55,
                 "preferred_time": "morning",
                 "problem": "chest",
-                
+                "preferred_doctor": "Dr. Lisa Williams"
             },
             {
                 "id": 13,
@@ -107,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 47,
                 "preferred_time": "afternoon",
                 "problem": "head",
-    
+                "preferred_doctor": "Dr. John Smith"
             },
             {
                 "id": 14,
@@ -115,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 39,
                 "preferred_time": "morning",
                 "problem": "stomach",
-                "problem": "back",
+                "preferred_doctor": "Dr. Jennifer Harris"
             },
             {
                 "id": 15,
@@ -123,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 41,
                 "preferred_time": "evening",
                 "problem": "back",
-
+                "preferred_doctor": "Dr. David Lee"
             },
             {
                 "id": 16,
@@ -131,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 29,
                 "preferred_time": "morning",
                 "problem": "chest",
-        
+                "preferred_doctor": "Dr. Emily White"
             },
             {
                 "id": 17,
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 50,
                 "preferred_time": "afternoon",
                 "problem": "head",
-    
+                "preferred_doctor": "Dr. John Smith"
             },
             {
                 "id": 18,
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 37,
                 "preferred_time": "morning",
                 "problem": "stomach",
-            
+                "preferred_doctor": "Dr. Robert Brown"
             },
             {
                 "id": 19,
@@ -155,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 43,
                 "preferred_time": "evening",
                 "problem": "back",
-                
+                "preferred_doctor": "Dr. Michael Davis"
             },
             {
                 "id": 20,
@@ -163,42 +164,77 @@ document.addEventListener("DOMContentLoaded", function () {
                 "age": 31,
                 "preferred_time": "morning",
                 "problem": "chest",
-                
+                "preferred_doctor": "Dr. Lisa Williams"
             }
-        
         
     ];
 
-    // Function to generate a random number between min and max (inclusive)
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    // Function to display a list of appointments in a table
+    function displayAppointments(patientData) {
+        // Clear the existing table
+        appointmentsTable.innerHTML = "";
 
-    // Function to display a list of appointments
-    function displayAppointments() {
-        // Clear the existing list of appointments
-        appointmentsList.innerHTML = "";
+        // Generate the table rows
+        for (const patient of patientData) {
+            const row = appointmentsTable.insertRow();
 
-        // Generate at least 5 random appointments
-        for (let i = 0; i < 5; i++) {
-            const randomIndex = getRandomInt(0, patients.length - 1);
-            const patient = patients[randomIndex];
+            const nameCell = row.insertCell(0);
+            nameCell.textContent = patient.name;
 
-            const listItem = document.createElement("li");
-            listItem.textContent = `${patient.name} - Problem: ${patient.problem},  Time: ${patient.preferred_time}`;
+            const ageCell = row.insertCell(1);
+            ageCell.textContent = patient.age;
 
+            const preferredTimeCell = row.insertCell(2);
+            preferredTimeCell.textContent = patient.preferred_time;
+
+            const problemCell = row.insertCell(3);
+            problemCell.textContent = patient.problem;
+
+            const preferredDoctorCell = row.insertCell(4);
+            preferredDoctorCell.textContent = patient.preferred_doctor;
+
+            const actionCell = row.insertCell(5);
             const rescheduleButton = document.createElement("button");
             rescheduleButton.textContent = "Reschedule";
             rescheduleButton.addEventListener("click", () => {
                 // Add reschedule logic here
                 alert(`Reschedule ${patient.name}'s appointment`);
             });
-
-            listItem.appendChild(rescheduleButton);
-            appointmentsList.appendChild(listItem);
+            actionCell.appendChild(rescheduleButton);
         }
     }
 
-    // Display the appointments when the page loads
-    displayAppointments();
+    // Apply sorting based on selected filter
+   // Apply sorting based on selected filter
+function applySort(filter) {
+    switch (filter) {
+        case "name":
+            patients.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+        case "problem":
+            patients.sort((a, b) => a.problem.localeCompare(b.problem));
+            break;
+        case "preferred_time":
+            patients.sort((a, b) => {
+                const timeOrder = { "morning": 1, "afternoon": 2, "evening": 3 };
+                return timeOrder[a.preferred_time] - timeOrder[b.preferred_time];
+            });
+            break;
+        default:
+            // Default sorting is by patient name
+            patients.sort((a, b) => a.name.localeCompare(b.name));
+            break;
+    }
+
+    displayAppointments(patients);
+}
+
+    // Display the appointments in the table when the page loads
+    displayAppointments(patients);
+
+    // Add event listener for the filter button
+    filterButton.addEventListener("click", () => {
+        const selectedFilter = sortFilter.value;
+        applySort(selectedFilter);
+    });
 });
