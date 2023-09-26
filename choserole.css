@@ -1,0 +1,53 @@
+body {
+    background-color: #f0f0f0; /* Set the background color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Set the height to cover the entire viewport */
+    margin: 0;
+}
+body {
+    background-image: url('rolebg.jpg'); /* Replace 'your-background-image.jpg' with the path to your image */
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Fixed background scrolling */
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.role-options {
+    text-align: center;
+    border: 1px solid #ddd; /* Add a border */
+    padding: 20px;
+    background-color: #fff; /* Set the background color for the box */
+    border-radius: 10px; /* Add rounded corners */
+}
+
+.doctor-button,
+.admin-button,
+.patient-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 18px;
+    background-color: #0074d9; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    border-radius: 5px; /* Add rounded corners to buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add a smooth transition on hover */
+}
+
+.doctor-button:hover,
+.admin-button:hover,
+.patient-button:hover {
+    background-color: #0056b3; /* Change the background color on hover */
+}
