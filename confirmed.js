@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display the confirmation message
     const confirmationMessage = document.getElementById("confirmation-message");
     if (doctorName) {
-        confirmationMessage.innerHTML = `Appointment confirmed: ${doctorName}.`;
+        confirmationMessage.innerHTML = `Request sent for: ${doctorName}.`;
     } else {
-        confirmationMessage.innerHTML = "Appointment confirmed:";
+        confirmationMessage.innerHTML = "Request sent for:";
     }
 });
